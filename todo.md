@@ -12,7 +12,8 @@
 - [ ] 2.3 Frontend-Setup (Next.js + TypeScript)
 - [ ] 2.4 Datenbank-Setup (PostgreSQL)
 - [ ] 2.5 Docker-Konfiguration
-- [ ] 2.6 CI/CD-Pipeline vorbereiten
+- [ ] 2.6 Nixpacks-Konfiguration (Railway/Deployment)
+- [ ] 2.7 CI/CD-Pipeline vorbereiten
 
 ## 📋 Phase 3: Core Backend Implementation
 - [ ] 3.1 Auth-System implementieren (JWT + Refresh Tokens)
@@ -64,11 +65,13 @@
 
 ## 📋 Phase 10: Dokumentation & Deployment
 - [ ] 10.1 README & Setup-Anleitung
-- [ ] 10.2 Deployment-Guide
-- [ ] 10.3 Empfehlungen für produktiven Betrieb
-- [ ] 10.4 Betriebshandbuch
+- [ ] 10.2 Deployment-Guide (Nixpacks, Railway, Docker)
+- [ ] 10.3 Nixpacks Build-Konfiguration testen
+- [ ] 10.4 Empfehlungen für produktiven Betrieb
+- [ ] 10.5 Betriebshandbuch
 
 ## ⚠️ Wichtige Annahmen & Hinweise
 - Deutsche Post API-Verfügbarkeit prüfen
 - Alternative Lösungen dokumentieren falls keine API vorhanden
 - Rechtliche Aspekte klären
+- **Deployment**: Projekt muss mit Nixpacks deploybar sein (Railway, etc.)

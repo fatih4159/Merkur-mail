@@ -110,6 +110,12 @@ Docker Compose (Development):
 - storage-container (MinIO)
 - redis-container (Session/Cache)
 
+Nixpacks (Railway, Render, etc.):
+- Automatisches Build-System
+- Zero-Config Deployment
+- Unterstützt Monorepo-Struktur
+- Build-Cache für schnellere Deployments
+
 Kubernetes (Production):
 - Frontend: 2+ Replicas (Auto-Scaling)
 - Backend: 3+ Replicas (Horizontal Scaling)
@@ -126,6 +132,52 @@ Kubernetes (Production):
 - NGINX/Traefik als Reverse Proxy
 - Round-Robin für Backend-Services
 - Sticky Sessions nicht erforderlich (stateless)
+
+### 3.4 Nixpacks Deployment (Railway/Render)
+
+**Anforderungen**:
+- Projekt muss mit Nixpacks buildbar sein (zero-config)
+- Automatische Erkennung von Node.js/TypeScript
+- Build-Konfiguration über `nixpacks.toml` oder `package.json`
+
+**Beispiel-Struktur**:
+```
+merkur-mail/
+├── apps/
+│   ├── backend/          # NestJS
+│   │   ├── package.json
+│   │   └── nixpacks.toml (optional)
+│   └── frontend/         # Next.js
+│       ├── package.json
+│       └── nixpacks.toml (optional)
+└── package.json          # Root
+```
+
+**nixpacks.toml (Backend)**:
+```toml
+[phases.setup]
+nixPkgs = ["nodejs_20", "postgresql"]
+
+[phases.build]
+cmds = ["npm install", "npm run build"]
+
+[start]
+cmd = "npm run start:prod"
+```
+
+**Environment Variables**:
+```bash
+NODE_ENV=production
+DATABASE_URL=${{ secrets.DATABASE_URL }}
+JWT_SECRET=${{ secrets.JWT_SECRET }}
+PORT=3000
+```
+
+**Vorteile**:
+- Schnelles Deployment ohne Docker-Komplexität
+- Automatische Build-Optimierung
+- Integrierte Health Checks
+- Zero-Downtime Deployments
 
 ## 4. Sicherheits-Architektur
 
@@ -225,6 +277,7 @@ User → Login Request
 | File Storage | MinIO (S3-compatible) | Self-hosted, Scalable |
 | Caching | Redis | Session, Rate-Limiting |
 | Containerization | Docker + Docker Compose | Dev/Prod Parity |
+| Build System | Nixpacks | Zero-Config, Railway/Render Support |
 | Orchestration | Kubernetes (Prod) | Scaling, Self-Healing |
 | CI/CD | GitHub Actions | Automated Testing & Deployment |
 
