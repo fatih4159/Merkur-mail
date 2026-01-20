@@ -15,10 +15,10 @@
 - [x] 2.6 Nixpacks-Konfiguration (Railway/Deployment)
 - [x] 2.7 CI/CD-Pipeline vorbereiten
 
-## 📋 Phase 3: Core Backend Implementation
-- [ ] 3.1 Auth-System implementieren (JWT + Refresh Tokens)
-- [ ] 3.2 User-Management & Rollensystem
-- [ ] 3.3 Passwort-Hashing (Argon2)
+## 📋 Phase 3: Core Backend Implementation (In Progress)
+- [x] 3.1 Auth-System implementieren (JWT + Refresh Tokens)
+- [x] 3.2 User-Management & Rollensystem
+- [x] 3.3 Passwort-Hashing (Argon2)
 - [ ] 3.4 DSGVO-konforme Datenhandhabung
 - [ ] 3.5 Audit-Logging-System
 
