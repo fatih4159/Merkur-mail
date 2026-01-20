@@ -6,14 +6,14 @@
 - [x] 1.3 API-Endpunkte definieren (OpenAPI-Style)
 - [x] 1.4 Sicherheitskonzept ausarbeiten
 
-## 📋 Phase 2: Projekt-Setup
-- [ ] 2.1 Projekt-Struktur anlegen
-- [ ] 2.2 Backend-Setup (NestJS + TypeScript)
-- [ ] 2.3 Frontend-Setup (Next.js + TypeScript)
-- [ ] 2.4 Datenbank-Setup (PostgreSQL)
-- [ ] 2.5 Docker-Konfiguration
-- [ ] 2.6 Nixpacks-Konfiguration (Railway/Deployment)
-- [ ] 2.7 CI/CD-Pipeline vorbereiten
+## 📋 Phase 2: Projekt-Setup ✅
+- [x] 2.1 Projekt-Struktur anlegen
+- [x] 2.2 Backend-Setup (NestJS + TypeScript)
+- [x] 2.3 Frontend-Setup (Next.js + TypeScript)
+- [x] 2.4 Datenbank-Setup (PostgreSQL)
+- [x] 2.5 Docker-Konfiguration
+- [x] 2.6 Nixpacks-Konfiguration (Railway/Deployment)
+- [x] 2.7 CI/CD-Pipeline vorbereiten
 
 ## 📋 Phase 3: Core Backend Implementation
 - [ ] 3.1 Auth-System implementieren (JWT + Refresh Tokens)

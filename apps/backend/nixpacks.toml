@@ -1,0 +1,19 @@
+# Nixpacks configuration for Merkur Mail Backend
+
+[phases.setup]
+nixPkgs = ["nodejs_20", "postgresql"]
+
+[phases.install]
+cmds = ["npm install"]
+
+[phases.build]
+cmds = [
+  "npx prisma generate",
+  "npm run build"
+]
+
+[start]
+cmd = "npm run start:prod"
+
+[variables]
+NODE_ENV = "production"

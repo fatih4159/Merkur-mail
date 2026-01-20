@@ -1,0 +1,47 @@
+{
+  "name": "merkur-mail",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Merkur Mail - Deutsche Post Print Mailing Service Platform",
+  "author": "Merkur Mail Team",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev --workspace=apps/backend",
+    "dev:frontend": "npm run dev --workspace=apps/frontend",
+    "build": "npm run build --workspaces --if-present",
+    "build:backend": "npm run build --workspace=apps/backend",
+    "build:frontend": "npm run build --workspace=apps/frontend",
+    "start": "npm run start --workspaces --if-present",
+    "start:backend": "npm run start:prod --workspace=apps/backend",
+    "start:frontend": "npm run start --workspace=apps/frontend",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:fix": "npm run lint:fix --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:watch": "npm run test:watch --workspaces --if-present",
+    "test:cov": "npm run test:cov --workspaces --if-present",
+    "test:e2e": "npm run test:e2e --workspace=apps/backend",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,js,jsx,json,md}\" \"packages/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"apps/**/*.{ts,tsx,js,jsx,json,md}\" \"packages/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:build": "docker-compose build",
+    "db:migrate": "npm run migrate --workspace=apps/backend",
+    "db:seed": "npm run seed --workspace=apps/backend",
+    "db:reset": "npm run db:reset --workspace=apps/backend"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "concurrently": "^8.2.2",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
