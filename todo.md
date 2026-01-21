@@ -15,12 +15,12 @@
 - [x] 2.6 Nixpacks-Konfiguration (Railway/Deployment)
 - [x] 2.7 CI/CD-Pipeline vorbereiten
 
-## 📋 Phase 3: Core Backend Implementation (In Progress)
+## 📋 Phase 3: Core Backend Implementation ✅
 - [x] 3.1 Auth-System implementieren (JWT + Refresh Tokens)
 - [x] 3.2 User-Management & Rollensystem
 - [x] 3.3 Passwort-Hashing (Argon2)
-- [ ] 3.4 DSGVO-konforme Datenhandhabung
-- [ ] 3.5 Audit-Logging-System
+- [x] 3.4 DSGVO-konforme Datenhandhabung
+- [x] 3.5 Audit-Logging-System
 
 ## 📋 Phase 4: Dokumentenmanagement
 - [ ] 4.1 Dokument-Upload-Funktionalität

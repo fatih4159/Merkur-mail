@@ -10,6 +10,7 @@ import * as argon2 from 'argon2';
 import * as crypto from 'crypto';
 import { RegisterDto, LoginDto, AuthResponseDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
+import { AuditService } from '../audit/audit.service';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +18,7 @@ export class AuthService {
     private jwtService: JwtService,
     private configService: ConfigService,
     private prisma: PrismaService,
+    private auditService: AuditService,
   ) {}
 
   async register(registerDto: RegisterDto): Promise<AuthResponseDto> {
@@ -64,6 +66,9 @@ export class AuthService {
       });
     }
 
+    // Log successful registration
+    await this.auditService.logAuthentication(user.id, 'register', 'success');
+
     // Generate tokens
     return this.generateTokens(user);
   }
@@ -88,6 +93,14 @@ export class AuthService {
     });
 
     if (!user) {
+      // Log failed login attempt
+      await this.auditService.log({
+        action: 'auth.login.failed',
+        ipAddress,
+        userAgent,
+        status: 'failed',
+        requestData: { email },
+      });
       throw new UnauthorizedException('Invalid credentials');
     }
 
@@ -100,6 +113,8 @@ export class AuthService {
     const isPasswordValid = await argon2.verify(user.passwordHash, password);
 
     if (!isPasswordValid) {
+      // Log failed password attempt
+      await this.auditService.logAuthentication(user.id, 'login', 'failed', ipAddress, userAgent);
       throw new UnauthorizedException('Invalid credentials');
     }
 
@@ -108,6 +123,9 @@ export class AuthService {
       where: { id: user.id },
       data: { lastLoginAt: new Date() },
     });
+
+    // Log successful login
+    await this.auditService.logAuthentication(user.id, 'login', 'success', ipAddress, userAgent);
 
     // Generate tokens
     return this.generateTokens(user, ipAddress, userAgent);
@@ -170,6 +188,11 @@ export class AuthService {
   async logout(refreshToken: string): Promise<void> {
     const tokenHash = crypto.createHash('sha256').update(refreshToken).digest('hex');
 
+    const token = await this.prisma.refreshToken.findUnique({
+      where: { tokenHash },
+      select: { userId: true },
+    });
+
     await this.prisma.refreshToken.updateMany({
       where: { tokenHash },
       data: {
@@ -177,6 +200,11 @@ export class AuthService {
         revokedAt: new Date(),
       },
     });
+
+    // Log logout
+    if (token) {
+      await this.auditService.logAuthentication(token.userId, 'logout', 'success');
+    }
   }
 
   async validateUser(userId: string): Promise<any> {
