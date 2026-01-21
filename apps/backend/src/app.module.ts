@@ -4,9 +4,11 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
+import { StorageModule } from './storage/storage.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AuditModule } from './audit/audit.module';
+import { DocumentsModule } from './documents/documents.module';
 
 @Module({
   imports: [
@@ -24,14 +26,15 @@ import { AuditModule } from './audit/audit.module';
       },
     ]),
 
-    // Database
+    // Database & Storage
     PrismaModule,
+    StorageModule,
 
     // Feature Modules
     AuthModule,
     UsersModule,
     AuditModule,
-    // DocumentsModule,
+    DocumentsModule,
     // MailingsModule,
   ],
   controllers: [AppController],

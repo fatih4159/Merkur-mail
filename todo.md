@@ -22,12 +22,12 @@
 - [x] 3.4 DSGVO-konforme Datenhandhabung
 - [x] 3.5 Audit-Logging-System
 
-## 📋 Phase 4: Dokumentenmanagement
-- [ ] 4.1 Dokument-Upload-Funktionalität
-- [ ] 4.2 Validierung (Format, Größe, Seitenanzahl)
-- [ ] 4.3 File-Storage-Integration (S3-kompatibel)
-- [ ] 4.4 Dokument-Vorschau
-- [ ] 4.5 Metadaten-Management
+## 📋 Phase 4: Dokumentenmanagement ✅
+- [x] 4.1 Dokument-Upload-Funktionalität
+- [x] 4.2 Validierung (Format, Größe, Seitenanzahl)
+- [x] 4.3 File-Storage-Integration (S3-kompatibel)
+- [x] 4.4 Dokument-Vorschau (Signed URLs)
+- [x] 4.5 Metadaten-Management
 
 ## 📋 Phase 5: Deutsche Post Integration
 - [ ] 5.1 Zugangsdaten-Management (verschlüsselte Speicherung)
